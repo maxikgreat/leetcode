@@ -12,22 +12,20 @@ var equalPairs = function(grid) {
     rows.push(row)
   }
 
-  const colStrings = grid.map(col => col.join(''))
-  const rowStrings = rows.map(row => row.join(''))
+  // const transposed = grid[0].map((_, colIndex) => grid.map(row => row[colIndex]))
 
-  const matches = []
-  colStrings.forEach(col => {
-    matches.push(rowStrings.filter(row => row === col))
-  })
+  // console.log(transposed)
 
-  rowStrings.forEach(row => {
-    matches.push(colStrings.filter(col => col === row))
-  })
+  let count = 0
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid.length; j++) {
+      if (JSON.stringify(grid[i]) === JSON.stringify(grid[j])) {
+        count++
+      }
+    }
+  }
 
-  return new Set(matches).size
+  return count
 };
 
-equalPairs([
-  [11,1],
-  [1,11]
-])
+console.log(equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
