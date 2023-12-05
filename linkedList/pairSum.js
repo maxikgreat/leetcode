@@ -70,7 +70,6 @@ var pairSum = function(head) {
     }
     current = current.next
   }
-  console.log(values)
 
   return Math.max(...values)
 };
