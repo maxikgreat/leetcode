@@ -6,19 +6,31 @@
  *               otherwise return 0
  * var guess = function(num) {}
  */
-var guess = function(num, values) {
+var guess = function(num) {
+  if (num === 1) {
+    return 0
+  }
+
+  if (num > 1) {
+    return -1
+  }
+
+  return 1
+}
+var recursive = function(values) {
   const index = Math.floor(values.length / 2)
   const middleNum = values[index]
-  if (num === middleNum) {
-    return num
+
+  if (guess(middleNum) === 0) {
+    return middleNum
   }
 
-  if (num > middleNum) {
-    return guess(num, values.filter((value) => value > middleNum))
+  if (guess(middleNum) === 1) {
+    return recursive(values.filter((value) => value > middleNum))
   }
 
-  if (num < middleNum) {
-    return guess(num, values.filter((value) => value < middleNum))
+  if (guess(middleNum) === -1) {
+    return recursive(values.filter((value) => value < middleNum))
   }
 }
 
@@ -26,9 +38,9 @@ var guess = function(num, values) {
  * @param {number} n
  * @return {number}
  */
-var guessNumber = function(n, num) {
+var guessNumber = function(n) {
   const values = Array.from({length: n}).map((_, index) => index + 1)
-  return guess(num, values)
+  return recursive(values)
 };
 
-guessNumber(10, 7)
+guessNumber(2 )
