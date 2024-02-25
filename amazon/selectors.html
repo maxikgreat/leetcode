@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom getElementsByClassName Test</title>
+</head>
+<body>
+
+<div class="highlight">Div 1 (class: highlight)
+    <p class="find-me">Paragraph 1 (class: find-me)</p>
+    <div class="nested">Div 2 (class: nested)
+        <span class="find-me nested">Span 1 (class: find-me nested)</span>
+        <div class="find-me">Div 3 (class: find-me)</div>
+    </div>
+</div>
+
+<section class="find-me">Section 1 (class: find-me)
+    <article class="nested">Article 1 (class: nested)
+        <div class="nested highlight">Div 4 (class: nested highlight)
+            <p class="find-me">Paragraph 2 (class: find-me)</p>
+        </div>
+        <ul class="nested">
+            <li class="find-me">List Item 1 (class: find-me)</li>
+            <li>List Item 2</li>
+            <li class="find-me nested">List Item 3 (class: find-me nested)
+                <ul>
+                    <li class="find-me">List Item 4 (class: find-me)</li>
+                </ul>
+            </li>
+        </ul>
+    </article>
+</section>
+
+<script>
+  // Placeholder for your custom getElementsByClassName function
+  function customGetElementsByClassName(className, node = document.body) {
+    let elements = [];
+
+    const find = (element) => {
+      if (element.classList?.contains(className)) {
+        elements.push(element)
+      }
+
+      element.childNodes.forEach((el) => {
+        find(el)
+      })
+    }
+
+    find(node)
+
+    return elements;
+  }
+
+  function customGetElementsByTagName(tagName, node = document.body) {
+    let elements = [];
+
+    const find = (element) => {
+      if (element.tagName?.toLowerCase() === tagName.toLowerCase()) {
+        elements.push(element)
+      }
+
+      element.childNodes.forEach((el) => {
+        find(el)
+      })
+    }
+
+    find(node)
+
+    return elements;
+  }
+
+  // Example usage
+  const foundElements = customGetElementsByTagName('ul');
+  console.log(foundElements); // Should log all elements with the 'find-me' class
+</script>
+
+</body>
+</html>
