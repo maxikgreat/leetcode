@@ -35,7 +35,7 @@ var minReorder = function(n, connections) {
 
     // Check values in first map
     if (from.has(cur)) {
-      for (const x of from.get(cur)){
+      for (const x of from.get(cur)) {
         // If visited, do nothing else add to queue
         if (visited.has(x)) continue;
         queue.push(x);
