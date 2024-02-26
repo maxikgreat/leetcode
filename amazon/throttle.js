@@ -2,7 +2,7 @@ function throttle(func, delay) {
   let allowed = true
   return function (...args) {
     if (allowed) {
-      func(...args)
+      func.bind(this)(...args)
       allowed = false
       setTimeout(() => {
         allowed = true
@@ -11,12 +11,15 @@ function throttle(func, delay) {
   }
 }
 
-const show = (val, val2) => {
-  console.log('show', val, val2)
+const obj = {
+  test: '1',
+  show: () => {
+    console.log(this)
+  }
 }
 
-const throttled = throttle(show, 1000)
-//
-for (let i = 0; i < 1000; i++) {
-  throttled(1, 2)
-}
+const throttled = throttle(obj.show.bind(obj), 1000)
+
+// throttled()
+
+obj.show()
