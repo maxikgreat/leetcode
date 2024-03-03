@@ -15,7 +15,6 @@ function get(objectParam, pathParam, defaultValue) {
     }
     object = object[prop]
 
-
   }
 
   return object ?? defaultValue
