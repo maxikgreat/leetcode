@@ -7,8 +7,7 @@ const allConstruct = (words, str) => {
     if (str.startsWith(word)) {
       const nextWord = str.substring(str.indexOf(word) + word.length)
       let res = allConstruct(words, nextWord)
-      res = res.map(item => [word, ...item])
-      result.push(...res)
+      result.push(...res.map(item => [word, ...item]))
     }
   }
 

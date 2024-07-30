@@ -16,7 +16,6 @@ const bestSum2 = (nums, target) => {
     }
   }
 
-  console.log(shortest)
   return arr[target]
 }
 
