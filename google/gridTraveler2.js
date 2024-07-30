@@ -1,28 +1,19 @@
 const gridTraveler = (n, m) => {
-  const grid = []
+  let count = 0
 
-  for (let i = 0; i < n; i++) {
-    grid[i] = []
-    for (let j = 0; j < m; j++) {
-      grid[i][j] = 0
+  const grid = Array.from({length: n + 1}).map(() => new Array(m + 1).fill(0))
+  grid[1][1] = 1
+
+  for (let i = 0; i <= n; i++) {
+    for (let j = 0; j <= m; j++) {
+      if (typeof grid[i + 1] !== 'undefined')
+      grid[i + 1][j] += grid[i][j]
+      if(typeof grid[i][j + 1] !== 'undefined')
+      grid[i][j + 1] += grid[i][j]
     }
   }
-
-  grid[0][0] = 1
-
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < m; j++) {
-      const currentWays = grid[i][j]
-      if (i + 1 < n) {
-        grid[i + 1][j] += currentWays
-      }
-      if (j + 1 < m) {
-        grid[i][j + 1] += currentWays
-      }
-    }
-  }
-
-  return grid[n, m]
+  // for (let i = ; i)
+  console.log(grid)
 }
 
-gridTraveler(2, 3)
+console.log(gridTraveler(3, 3))
